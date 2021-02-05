@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block content %}
+<head>
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+        @media (max-width: 991px) {
+            #login, #register{
+                display: none;
+            }
+        }
+        #form{
+            max-width: 20rem;
+            margin: 0 auto;
+            margin-top: 5rem;
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+</head>
+
+<div id="form" class="text-center" style="width: 50;">
+    <main class="form-signin">
+        <h1 class="h3 mb-3 fw-normal">로그인</h1>
+        <form method="post">
+            <label for="inputEmail" class="visually-hidden">ID</label>
+            <input type="text" id="inputId" class="form-control mb-1" name="userId" placeholder="아이디" required autofocus>
+            <label for="inputPassword" class="visually-hidden" >Password</label>
+            <input type="password" id="inputPassword" class="form-control" name="userPwd" placeholder="비밀번호" required>
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
+            
+            <a href="{{url_for('auth.register')}}">회원가입</a>
+            <p class="mt-5 mb-3 text-muted">&copy; 2017-2021</p>
+        </form>
+    </main>
+</div>
+
+{% endblock %}

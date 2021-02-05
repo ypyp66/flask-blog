@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block header %}
+<h1>{% block title %}Posts{% endblock %}</h1>
+{% if g.user %}
+<a class="action" href="{{ url_for('blog.create') }}">New</a>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% for post in posts %}
+<article class="post">
+    <h1>{{ post['title'] }}</h1>
+    <hr>
+    <p>
+        {{ post['body']}}
+    </p>
+</article>
+{% if g.user['userId'] == post['author_id'] %}
+<a class="btn btn-primary btn-sm" href="{{ url_for('blog.update', board_id=board_id ,id=post['id']) }}">수정</a>
+<a class="btn btn-danger btn-sm" href="{{ url_for('blog.delete', board_id=board_id ,id=post['id']) }}">삭제</a>
+{% endif %}
+{% if not loop.last %}
+<hr>
+{% endif %}
+{% endfor %}
+{% endblock %}

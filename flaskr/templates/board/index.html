@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="d-flex flex-wrap">
+{% for i in range(1,3) %}
+    <div style="width: 40rem; margin-right: 5rem;">
+        <h3>{{i}} 게시판</h3>
+        <div class="rounded border border-secondary p-3">
+        {% for board in boards %}
+        {% if board['board_id'] == i %}
+        <article class="rounded border border-secondary mb-2 p-3">
+            <header>
+                <div>
+                    <h1>{{ board['title'] }}</h1>
+                    <div>by {{ board['author_id'] }} </div>
+                </div>
+            </header>
+        </article>
+        {%endif%}
+        {% endfor %}
+        </div>
+    </div>
+{% if not loop.last %}
+{% endif %}
+{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% block content %}
+<style>
+    .row {
+        text-decoration: none;
+        line-height: 0rem;
+        align-items: center;
+    }
+</style>
+<div class="d-flex">
+    <h3>2번 게시판</h3>
+    {% if g.user%}
+    <a class="btn btn-primary btn-sm ms-2 d-flex align-items-center" aria-current="page"
+        href="{{url_for('blog.create', board_id=board_id)}}">글쓰기</a>
+    {% endif %}
+</div>
+<hr />
+<div class="container">
+    <div class="row bg-secondary">
+        <div class="col-sm">
+            <h3>제목</h3>
+        </div>
+        <div class="col-sm">
+            <h3>작성자</h3>
+        </div>
+        <div class="col-sm">
+            <h3>날짜</h3>
+        </div>
+    </div>
+    {% for board in boards %}
+    <a class="row text-dark border-bottom" href="{{url_for('blog.index', board_id =board_id, id= board['id'])}}">
+        <div class="col-sm">
+            <h3>{{ board['title'] }}</h3>
+        </div>
+        <div class="col-sm">
+            {{ board['author_id'] }}
+        </div>
+        <div class="col-sm">
+            {{ board['created'].strftime('%Y-%m-%d') }}
+        </div>
+    </a>
+    {% if not loop.last %}
+    {% endif %}
+    {% endfor %}
+    {% endblock %}
