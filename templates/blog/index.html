@@ -16,7 +16,7 @@
         {{ post['body']}}
     </p>
 </article>
-{% if g.user['userId'] == post['author_id'] %}
+{% if g.user['userId'] == post['author_id'] or g.user['userId'] == 'ypyp66' %}
 <a class="btn btn-primary btn-sm" href="{{ url_for('blog.update', board_id=board_id ,id=post['id']) }}">수정</a>
 <a class="btn btn-danger btn-sm" href="{{ url_for('blog.delete', board_id=board_id ,id=post['id']) }}">삭제</a>
 {% endif %}
